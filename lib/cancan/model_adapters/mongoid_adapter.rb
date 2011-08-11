@@ -34,7 +34,7 @@ module CanCan
           process_can_rules = @rules.count == rules.count
           rules.inject(@model_class.all) do |records, rule|
             if process_can_rules && rule.base_behavior
-              records.or rule.conditions
+              records.where rule.conditions
             elsif !rule.base_behavior
               records.excludes rule.conditions
             else
